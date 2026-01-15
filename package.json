@@ -1,0 +1,52 @@
+{
+  "name": "notigram",
+  "version": "1.0.0",
+  "description": "Get Telegram notifications when someone visits your website",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "telegram",
+    "notifications",
+    "visitor",
+    "analytics",
+    "react",
+    "nextjs",
+    "tracking",
+    "visitor-tracking"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1",
+    "ua-parser-js": "^1.0.41"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/react": "^18.2.45",
+    "@types/ua-parser-js": "^0.7.39",
+    "react": "^18.2.0",
+    "rollup": "^4.9.1",
+    "typescript": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/notigram.git"
+  },
+  "author": "Dycoder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/notigram/issues"
+  },
+  "homepage": "http://dycoder.space/"
+}
