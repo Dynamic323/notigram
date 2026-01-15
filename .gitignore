@@ -1,0 +1,68 @@
+# Node.js and npm specific
+node_modules/
+.npm/
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build and output directories
+dist/
+build/
+out/
+coverage/
+.nyc_output/
+*.lcov
+*.tsbuildinfo
+
+# Environment and configuration files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS-generated files
+.DS_Store
+.Thumbs.db
+Desktop.ini
+
+# Temporary and cache files
+tmp/
+temp/
+.cache/
+.parcel-cache/
+.webpack/
+.rollup.cache/
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.pnpm-lock.yaml
+
+# Optional: If using CI/CD
+.ci/
+.local.env
+
+# Ignore files that might contain secrets
+secrets/
+*.key
+*.json   
