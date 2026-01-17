@@ -14,7 +14,7 @@ Built by [Dycoder](http://dycoder.space/) 💙
 - [Telegram Bot Setup](#telegram-bot-setup)
   - [Creating Your Bot](#1-creating-your-telegram-bot)
   - [Getting Your Chat ID](#2-getting-your-chat-id)
-  - [Video Tutorial](#video-tutorial)
+  <!-- - [Video Tutorial](#video-tutorial) -->
 - [Usage](#usage)
   - [Basic Implementation](#basic-implementation)
   - [Next.js App Router](#nextjs-app-router)
@@ -126,11 +126,11 @@ https://api.telegram.org/botYOUR_BOT_TOKEN/getUpdates
 
 **Step 3:** Look for the `"chat":{"id":` field in the JSON response. The number after `id` is your chat ID.
 
-### Video Tutorial
+<!-- ### Video Tutorial
 
 For a complete video walkthrough of the setup process, watch this tutorial:
 
-**[Video: How to Set Up Notigram]** _(Upload your video and add the link here)_
+**[Video: How to Set Up Notigram]** _(Upload your video and add the link here)_ -->
 
 ---
 
