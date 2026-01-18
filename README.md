@@ -29,7 +29,7 @@ Built by [Dycoder](http://dycoder.space/) 💙
 - [Examples](#examples)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
-
+- [Privacy & Security]_(#privacy).
 ---
 
 ## Features
@@ -620,6 +620,18 @@ Found a bug or have a feature request? Open an issue on GitHub.
 ## License
 
 MIT License - feel free to use in personal and commercial projects.
+
+---
+
+## Privacy & Security
+
+- All visitor data is sent directly to your Telegram bot
+- No data is stored on any third-party servers
+- The package only uses public IP geolocation APIs
+- **Important**: Your bot token will be visible in client-side code. This is 
+  inherent to how the package works. Each user creates their own bot and uses 
+  their own credentials - no shared tokens. Keep your `.env.local` file in 
+  `.gitignore` to avoid committing your tokens to version control.
 
 ---
 
