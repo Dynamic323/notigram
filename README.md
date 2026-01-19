@@ -29,7 +29,7 @@ Built by [Dycoder](http://dycoder.space/) 💙
 - [Examples](#examples)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
-- [Privacy & Security]_(#privacy).
+- [Privacy & Security](#privacy)
 ---
 
 ## Features
@@ -623,7 +623,7 @@ MIT License - feel free to use in personal and commercial projects.
 
 ---
 
-## Privacy & Security
+## Privacy
 
 - All visitor data is sent directly to your Telegram bot
 - No data is stored on any third-party servers
