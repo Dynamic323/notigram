@@ -65,4 +65,4 @@ pnpm-lock.yaml
 # Ignore files that might contain secrets
 secrets/
 *.key
-*.json   
+*.json   .npmrc
