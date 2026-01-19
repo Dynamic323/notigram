@@ -1,7 +1,7 @@
 interface NotigramProps {
     botToken: string;
     chatId: string;
-    fields?: ('ip' | 'location' | 'device' | 'browser' | 'os' | 'page' | 'time' | 'timezone' | 'country' | 'city' | 'region' | 'isp' | 'continent' | 'flag' | 'coordinates' | 'postal' | 'calling_code' | 'asn' | 'org')[];
+    fields?: ("ip" | "location" | "device" | "browser" | "os" | "page" | "time" | "timezone" | "country" | "country_code" | "city" | "region" | "region_code" | "isp" | "continent" | "continent_code" | "flag" | "coordinates" | "postal" | "calling_code" | "asn" | "org")[];
     customMessage?: (data: VisitorData) => string;
     onSuccess?: (data: VisitorData) => void;
     onError?: (error: Error) => void;
@@ -54,5 +54,5 @@ interface VisitorData {
     timestamp?: string;
     userAgent?: string;
 }
-export default function Notigram({ botToken, chatId, fields, customMessage, onSuccess, onError, disabled, debounceMs }: NotigramProps): null;
+export default function Notigram({ botToken, chatId, fields, customMessage, onSuccess, onError, disabled, debounceMs, }: NotigramProps): null;
 export type { NotigramProps, VisitorData };

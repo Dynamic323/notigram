@@ -236,5 +236,4 @@ function buildDefaultMessage(data: VisitorData, fields: string[]): string {
   return message;
 }
 
-// Export types
 export type { NotigramProps, VisitorData };
