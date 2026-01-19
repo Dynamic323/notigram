@@ -1,10 +1,33 @@
-import { useEffect, useRef } from 'react';
-import { UAParser } from 'ua-parser-js';
+import { useEffect, useRef } from "react";
+import { UAParser } from "ua-parser-js";
 
 interface NotigramProps {
   botToken: string;
   chatId: string;
-  fields?: ('ip' | 'location' | 'device' | 'browser' | 'os' | 'page' | 'time' | 'timezone' | 'country' | 'city' | 'region' | 'isp' | 'continent' | 'flag' | 'coordinates' | 'postal' | 'calling_code' | 'asn' | 'org')[];
+  fields?: (
+    | "ip"
+    | "location"
+    | "device"
+    | "browser"
+    | "os"
+    | "page"
+    | "time"
+    | "timezone"
+    | "country"
+    | "country_code"
+    | "city"
+    | "region"
+    | "region_code"
+    | "isp"
+    | "continent"
+    | "continent_code"
+    | "flag"
+    | "coordinates"
+    | "postal"
+    | "calling_code"
+    | "asn"
+    | "org"
+  )[];
   customMessage?: (data: VisitorData) => string;
   onSuccess?: (data: VisitorData) => void;
   onError?: (error: Error) => void;
@@ -62,12 +85,12 @@ interface VisitorData {
 export default function Notigram({
   botToken,
   chatId,
-  fields = ['ip', 'country', 'flag', 'city', 'device', 'page', 'time'],
+  fields = ["ip", "country", "flag", "city", "device", "page", "time"],
   customMessage,
   onSuccess,
   onError,
   disabled = false,
-  debounceMs = 0
+  debounceMs = 0,
 }: NotigramProps) {
   const hasNotified = useRef(false);
 
@@ -87,7 +110,7 @@ export default function Notigram({
 
     try {
       // Get IP
-      const ipRes = await fetch('https://api.ipify.org?format=json');
+      const ipRes = await fetch("https://api.ipify.org?format=json");
       const { ip } = await ipRes.json();
 
       // Get complete location data
@@ -103,7 +126,7 @@ export default function Notigram({
         ip: locationData.ip,
         success: locationData.success,
         type: locationData.type,
-        
+
         // Location Data
         continent: locationData.continent,
         continent_code: locationData.continent_code,
@@ -119,50 +142,51 @@ export default function Notigram({
         calling_code: locationData.calling_code,
         capital: locationData.capital,
         borders: locationData.borders,
-        
+
         // Flag Data
         flag: locationData.flag,
-        
+
         // Connection Data
         connection: locationData.connection,
-        
+
         // Timezone Data
         timezone: locationData.timezone,
-        
+
         // Device Data
-        device: device.vendor && device.model 
-          ? `${device.vendor} ${device.model}` 
-          : device.type || 'Desktop',
+        device:
+          device.vendor && device.model
+            ? `${device.vendor} ${device.model}`
+            : device.type || "Desktop",
         browser: `${browser.name} ${browser.version}`,
         os: `${os.name} ${os.version}`,
-        
+
         // Page Data
         page: window.location.pathname,
         fullUrl: window.location.href,
-        referrer: document.referrer || 'Direct',
+        referrer: document.referrer || "Direct",
         timestamp: new Date().toLocaleString(),
-        userAgent: navigator.userAgent
+        userAgent: navigator.userAgent,
       };
 
       // Build message
-      const message = customMessage 
+      const message = customMessage
         ? customMessage(visitorData)
         : buildDefaultMessage(visitorData, fields);
 
       // Send to Telegram
       await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: chatId,
           text: message,
-          parse_mode: 'Markdown'
-        })
+          parse_mode: "Markdown",
+        }),
       });
 
       onSuccess?.(visitorData);
     } catch (err) {
-      console.error('Notigram error:', err);
+      console.error("Notigram error:", err);
       onError?.(err as Error);
     }
   };
@@ -171,16 +195,19 @@ export default function Notigram({
 }
 
 function buildDefaultMessage(data: VisitorData, fields: string[]): string {
-  let message = '🚨 *New Visitor Alert*\n━━━━━━━━━━━━━━━\n';
+  let message = "🚨 *New Visitor Alert*\n━━━━━━━━━━━━━━━\n";
 
   const fieldMap: Record<string, string> = {
     page: `🌐 *Page*: ${data.page}`,
     ip: `💻 *IP*: ${data.ip}`,
     country: `🌍 *Country*: ${data.country}`,
-    flag: data.flag?.emoji ? `${data.flag.emoji} *Flag*: ${data.country}` : '',
+    country_code: `🏳️ *Country Code*: ${data.country_code}`,
+    flag: data.flag?.emoji ? `${data.flag.emoji} *Flag*: ${data.country}` : "",
     city: `🏙️ *City*: ${data.city}`,
     region: `📍 *Region*: ${data.region}`,
+    region_code: `📌 *Region Code*: ${data.region_code}`,
     continent: `🌎 *Continent*: ${data.continent}`,
+    continent_code: `🗺️ *Continent Code*: ${data.continent_code}`,
     device: `📱 *Device*: ${data.device}`,
     browser: `🌐 *Browser*: ${data.browser}`,
     os: `⚙️ *OS*: ${data.os}`,
@@ -190,20 +217,22 @@ function buildDefaultMessage(data: VisitorData, fields: string[]): string {
     org: `🏢 *Organization*: ${data.connection?.org}`,
     asn: `🔢 *ASN*: ${data.connection?.asn}`,
     coordinates: `📌 *Coordinates*: ${data.latitude}, ${data.longitude}`,
-    postal: data.postal ? `📮 *Postal*: ${data.postal}` : '',
-    calling_code: `📞 *Calling Code*: +${data.calling_code}`
+    postal: data.postal ? `📮 *Postal*: ${data.postal}` : "",
+    calling_code: `📞 *Calling Code*: +${data.calling_code}`,
+    // Add 'location' as a combined field
+    location: `📍 *Location*: ${data.city}, ${data.region}, ${data.country}`,
   };
 
-  fields.forEach(field => {
+  fields.forEach((field) => {
     const value = fieldMap[field];
     if (value) {
-      message += value + '\n';
+      message += value + "\n";
     }
   });
 
-  message += '━━━━━━━━━━━━━━━\n';
-  message += '_Built by [Dycoder](http://dycoder.space/) 💙_';
-  
+  message += "━━━━━━━━━━━━━━━\n";
+  message += "_Built with 💙 by [Dycoder]";
+
   return message;
 }
 

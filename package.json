@@ -1,7 +1,7 @@
 {
   "name": "notigram",
   "version": "1.0.0",
-  "description": "Get Telegram notifications when someone visits your website",
+  "description": "Real-time Telegram notifications for React & Next.js apps. Get instant visitor alerts with IP, location, device info & more. Built by Dycoder 💙",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -9,14 +9,16 @@
     "dist"
   ],
   "keywords": [
-    "telegram",
+   "telegram",
     "notifications",
-    "visitor",
-    "analytics",
     "react",
     "nextjs",
-    "tracking",
-    "visitor-tracking"
+    "visitor-tracking",
+    "analytics",
+    "telegram-bot",
+    "real-time",
+    "monitoring",
+    "dycoder"
   ],
   "scripts": {
     "build": "rollup -c",
@@ -41,12 +43,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/notigram.git"
+    "url": "git+https://github.com/Dynamic323/notigram.git"
   },
   "author": "Dycoder",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yourusername/notigram/issues"
+    "url": "https://github.com/Dynamic323/notigram/issues"
   },
   "homepage": "http://dycoder.space/"
 }
