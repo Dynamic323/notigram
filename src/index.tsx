@@ -219,7 +219,6 @@ function buildDefaultMessage(data: VisitorData, fields: string[]): string {
     coordinates: `📌 *Coordinates*: ${data.latitude}, ${data.longitude}`,
     postal: data.postal ? `📮 *Postal*: ${data.postal}` : "",
     calling_code: `📞 *Calling Code*: +${data.calling_code}`,
-    // Add 'location' as a combined field
     location: `📍 *Location*: ${data.city}, ${data.region}, ${data.country}`,
   };
 
