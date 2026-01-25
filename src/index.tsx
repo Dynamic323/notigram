@@ -180,7 +180,7 @@ export default function Notigram({
         body: JSON.stringify({
           chat_id: chatId,
           text: message,
-          parse_mode: "Markdown",
+          parse_mode: "HTML",
         }),
       });
 
@@ -195,31 +195,43 @@ export default function Notigram({
 }
 
 function buildDefaultMessage(data: VisitorData, fields: string[]): string {
-  let message = "🚨 *New Visitor Alert*\n━━━━━━━━━━━━━━━\n";
+  let message = "🚨 <b>New Visitor Alert</b>\n━━━━━━━━━━━━━━━\n";
+
+  const escapeHTML = (text: string | undefined) => {
+    if (!text) return "";
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  };
 
   const fieldMap: Record<string, string> = {
-    page: `🌐 *Page*: ${data.page}`,
-    ip: `💻 *IP*: ${data.ip}`,
-    country: `🌍 *Country*: ${data.country}`,
-    country_code: `🏳️ *Country Code*: ${data.country_code}`,
-    flag: data.flag?.emoji ? `${data.flag.emoji} *Flag*: ${data.country}` : "",
-    city: `🏙️ *City*: ${data.city}`,
-    region: `📍 *Region*: ${data.region}`,
-    region_code: `📌 *Region Code*: ${data.region_code}`,
-    continent: `🌎 *Continent*: ${data.continent}`,
-    continent_code: `🗺️ *Continent Code*: ${data.continent_code}`,
-    device: `📱 *Device*: ${data.device}`,
-    browser: `🌐 *Browser*: ${data.browser}`,
-    os: `⚙️ *OS*: ${data.os}`,
-    time: `⏰ *Time*: ${data.timestamp}`,
-    timezone: `🕐 *Timezone*: ${data.timezone?.id} (${data.timezone?.utc})`,
-    isp: `📡 *ISP*: ${data.connection?.isp}`,
-    org: `🏢 *Organization*: ${data.connection?.org}`,
-    asn: `🔢 *ASN*: ${data.connection?.asn}`,
-    coordinates: `📌 *Coordinates*: ${data.latitude}, ${data.longitude}`,
-    postal: data.postal ? `📮 *Postal*: ${data.postal}` : "",
-    calling_code: `📞 *Calling Code*: +${data.calling_code}`,
-    location: `📍 *Location*: ${data.city}, ${data.region}, ${data.country}`,
+    page: `🌐 <b>Page:</b> ${escapeHTML(data.page)}`,
+    ip: `💻 <b>IP:</b> ${escapeHTML(data.ip)}`,
+    country: `🌍 <b>Country:</b> ${escapeHTML(data.country)}`,
+    country_code: `🏳️ <b>Country Code:</b> ${escapeHTML(data.country_code)}`,
+    flag: data.flag?.emoji
+      ? `${data.flag.emoji} <b>Flag:</b> ${escapeHTML(data.country)}`
+      : "",
+    city: `🏙️ <b>City:</b> ${escapeHTML(data.city)}`,
+    region: `📍 <b>Region:</b> ${escapeHTML(data.region)}`,
+    region_code: `📌 <b>Region Code:</b> ${escapeHTML(data.region_code)}`,
+    continent: `🌎 <b>Continent:</b> ${escapeHTML(data.continent)}`,
+    continent_code: `🗺️ <b>Continent Code:</b> ${escapeHTML(data.continent_code)}`,
+    device: `📱 <b>Device:</b> ${escapeHTML(data.device)}`,
+    browser: `🌐 <b>Browser:</b> ${escapeHTML(data.browser)}`,
+    os: `⚙️ <b>OS:</b> ${escapeHTML(data.os)}`,
+    time: `⏰ <b>Time:</b> ${escapeHTML(data.timestamp)}`,
+    timezone: `🕐 <b>Timezone:</b> ${escapeHTML(data.timezone?.id)} (${escapeHTML(data.timezone?.utc)})`,
+    isp: `📡 <b>ISP:</b> ${escapeHTML(data.connection?.isp)}`,
+    org: `🏢 <b>Organization:</b> ${escapeHTML(data.connection?.org)}`,
+    asn: `🔢 <b>ASN:</b> ${escapeHTML(data.connection?.asn?.toString())}`,
+    coordinates: `📌 <b>Coordinates:</b> ${escapeHTML(data.latitude?.toString())}, ${escapeHTML(data.longitude?.toString())}`,
+    postal: data.postal ? `📮 <b>Postal:</b> ${escapeHTML(data.postal)}` : "",
+    calling_code: `📞 <b>Calling Code:</b> +${escapeHTML(data.calling_code)}`,
+    location: `📍 <b>Location:</b> ${escapeHTML(data.city)}, ${escapeHTML(data.region)}, ${escapeHTML(data.country)}`,
   };
 
   fields.forEach((field) => {
@@ -230,7 +242,7 @@ function buildDefaultMessage(data: VisitorData, fields: string[]): string {
   });
 
   message += "━━━━━━━━━━━━━━━\n";
-  message += "_Built with 💙 by [Dycoder]";
+  message += "<i>Built with 💙 by Dycoder</i>";
 
   return message;
 }
