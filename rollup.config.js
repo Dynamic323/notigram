@@ -8,10 +8,12 @@ export default {
     {
       file: 'dist/index.js',
       format: 'cjs',
+      banner: '"use client";', 
       sourcemap: true,
     },
     {
       file: 'dist/index.esm.js',
+      banner: '"use client";', 
       format: 'esm',
       sourcemap: true,
     },
