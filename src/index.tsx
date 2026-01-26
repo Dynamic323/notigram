@@ -93,7 +93,6 @@ export default function Notigram({
   debounceMs = 0,
 }: NotigramProps) {
   const hasNotified = useRef(false);
-
   useEffect(() => {
     if (disabled || hasNotified.current) return;
 
