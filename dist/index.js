@@ -1153,7 +1153,7 @@ function Notigram({ botToken, chatId, fields = ["ip", "country", "flag", "city",
                 body: JSON.stringify({
                     chat_id: chatId,
                     text: message,
-                    parse_mode: "Markdown",
+                    parse_mode: "HTML",
                 }),
             });
             onSuccess === null || onSuccess === void 0 ? void 0 : onSuccess(visitorData);
@@ -1166,32 +1166,43 @@ function Notigram({ botToken, chatId, fields = ["ip", "country", "flag", "city",
     return null;
 }
 function buildDefaultMessage(data, fields) {
-    var _a, _b, _c, _d, _e, _f;
-    let message = "🚨 *New Visitor Alert*\n━━━━━━━━━━━━━━━\n";
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+    let message = "🚨 <b>New Visitor Alert</b>\n━━━━━━━━━━━━━━━\n";
+    const escapeHTML = (text) => {
+        if (!text)
+            return "";
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    };
     const fieldMap = {
-        page: `🌐 *Page*: ${data.page}`,
-        ip: `💻 *IP*: ${data.ip}`,
-        country: `🌍 *Country*: ${data.country}`,
-        country_code: `🏳️ *Country Code*: ${data.country_code}`,
-        flag: ((_a = data.flag) === null || _a === void 0 ? void 0 : _a.emoji) ? `${data.flag.emoji} *Flag*: ${data.country}` : "",
-        city: `🏙️ *City*: ${data.city}`,
-        region: `📍 *Region*: ${data.region}`,
-        region_code: `📌 *Region Code*: ${data.region_code}`,
-        continent: `🌎 *Continent*: ${data.continent}`,
-        continent_code: `🗺️ *Continent Code*: ${data.continent_code}`,
-        device: `📱 *Device*: ${data.device}`,
-        browser: `🌐 *Browser*: ${data.browser}`,
-        os: `⚙️ *OS*: ${data.os}`,
-        time: `⏰ *Time*: ${data.timestamp}`,
-        timezone: `🕐 *Timezone*: ${(_b = data.timezone) === null || _b === void 0 ? void 0 : _b.id} (${(_c = data.timezone) === null || _c === void 0 ? void 0 : _c.utc})`,
-        isp: `📡 *ISP*: ${(_d = data.connection) === null || _d === void 0 ? void 0 : _d.isp}`,
-        org: `🏢 *Organization*: ${(_e = data.connection) === null || _e === void 0 ? void 0 : _e.org}`,
-        asn: `🔢 *ASN*: ${(_f = data.connection) === null || _f === void 0 ? void 0 : _f.asn}`,
-        coordinates: `📌 *Coordinates*: ${data.latitude}, ${data.longitude}`,
-        postal: data.postal ? `📮 *Postal*: ${data.postal}` : "",
-        calling_code: `📞 *Calling Code*: +${data.calling_code}`,
-        // Add 'location' as a combined field
-        location: `📍 *Location*: ${data.city}, ${data.region}, ${data.country}`,
+        page: `🌐 <b>Page:</b> ${escapeHTML(data.page)}`,
+        ip: `💻 <b>IP:</b> ${escapeHTML(data.ip)}`,
+        country: `🌍 <b>Country:</b> ${escapeHTML(data.country)}`,
+        country_code: `🏳️ <b>Country Code:</b> ${escapeHTML(data.country_code)}`,
+        flag: ((_a = data.flag) === null || _a === void 0 ? void 0 : _a.emoji)
+            ? `${data.flag.emoji} <b>Flag:</b> ${escapeHTML(data.country)}`
+            : "",
+        city: `🏙️ <b>City:</b> ${escapeHTML(data.city)}`,
+        region: `📍 <b>Region:</b> ${escapeHTML(data.region)}`,
+        region_code: `📌 <b>Region Code:</b> ${escapeHTML(data.region_code)}`,
+        continent: `🌎 <b>Continent:</b> ${escapeHTML(data.continent)}`,
+        continent_code: `🗺️ <b>Continent Code:</b> ${escapeHTML(data.continent_code)}`,
+        device: `📱 <b>Device:</b> ${escapeHTML(data.device)}`,
+        browser: `🌐 <b>Browser:</b> ${escapeHTML(data.browser)}`,
+        os: `⚙️ <b>OS:</b> ${escapeHTML(data.os)}`,
+        time: `⏰ <b>Time:</b> ${escapeHTML(data.timestamp)}`,
+        timezone: `🕐 <b>Timezone:</b> ${escapeHTML((_b = data.timezone) === null || _b === void 0 ? void 0 : _b.id)} (${escapeHTML((_c = data.timezone) === null || _c === void 0 ? void 0 : _c.utc)})`,
+        isp: `📡 <b>ISP:</b> ${escapeHTML((_d = data.connection) === null || _d === void 0 ? void 0 : _d.isp)}`,
+        org: `🏢 <b>Organization:</b> ${escapeHTML((_e = data.connection) === null || _e === void 0 ? void 0 : _e.org)}`,
+        asn: `🔢 <b>ASN:</b> ${escapeHTML((_g = (_f = data.connection) === null || _f === void 0 ? void 0 : _f.asn) === null || _g === void 0 ? void 0 : _g.toString())}`,
+        coordinates: `📌 <b>Coordinates:</b> ${escapeHTML((_h = data.latitude) === null || _h === void 0 ? void 0 : _h.toString())}, ${escapeHTML((_j = data.longitude) === null || _j === void 0 ? void 0 : _j.toString())}`,
+        postal: data.postal ? `📮 <b>Postal:</b> ${escapeHTML(data.postal)}` : "",
+        calling_code: `📞 <b>Calling Code:</b> +${escapeHTML(data.calling_code)}`,
+        location: `📍 <b>Location:</b> ${escapeHTML(data.city)}, ${escapeHTML(data.region)}, ${escapeHTML(data.country)}`,
     };
     fields.forEach((field) => {
         const value = fieldMap[field];
@@ -1200,7 +1211,7 @@ function buildDefaultMessage(data, fields) {
         }
     });
     message += "━━━━━━━━━━━━━━━\n";
-    message += "_Built with 💙 by [Dycoder]";
+    message += "<i>Built with 💙 by Dycoder</i>";
     return message;
 }
 

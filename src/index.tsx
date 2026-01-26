@@ -121,6 +121,7 @@ export default function Notigram({
       const parser = new UAParser();
       const { browser, os, device } = parser.getResult();
 
+      
       const visitorData: VisitorData = {
         // IP Data
         ip: locationData.ip,
