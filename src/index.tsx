@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { UAParser } from "ua-parser-js";
 

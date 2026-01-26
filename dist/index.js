@@ -1079,7 +1079,7 @@ var uaParser = {exports: {}};
 
 var uaParserExports = uaParser.exports;
 
-function Notigram({ botToken, chatId, fields = ["ip", "country", "flag", "city", "device", "page", "time"], customMessage, onSuccess, onError, disabled = false, debounceMs = 0, }) {
+function Notigram({ botToken, chatId, fields = ["page", "country", "flag", "device", "time"], customMessage, onSuccess, onError, disabled = false, debounceMs = 0, }) {
     const hasNotified = react.useRef(false);
     react.useEffect(() => {
         if (disabled || hasNotified.current)

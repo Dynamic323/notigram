@@ -18,7 +18,7 @@ Built by [Dycoder](http://dycoder.space/) 💙
 - [Usage](#usage)
   - [Basic Implementation](#basic-implementation)
   - [Next.js App Router](#nextjs-app-router)
-  - [Next.js Pages Router](#nextjs-pages-router)
+  <!-- - [Next.js Pages Router](#nextjs-pages-router) -->
   - [React (Vite, CRA)](#react-vite-cra)
 - [Configuration](#configuration)
   - [Available Fields](#available-fields)
@@ -107,15 +107,7 @@ function App() {
 
 ### 2. Getting Your Chat ID
 
-**Method 1: Using a Bot (Recommended)**
-
-**Step 1:** Search for `@userinfobot` in Telegram
-
-**Step 2:** Start a conversation and it will immediately send you your chat ID
-
-**Step 3:** Copy the number (it usually starts with a negative sign for groups or is positive for personal chats)
-
-**Method 2: Manual Method**
+**Method 1:  Manual Method**
 
 **Step 1:** Send a message to your bot (the one you created with BotFather)
 
@@ -123,6 +115,16 @@ function App() {
 ```
 https://api.telegram.org/botYOUR_BOT_TOKEN/getUpdates
 ```
+
+
+**Method 2:Using a Bot**
+
+**Step 1:** Search for `@userinfobot` in Telegram
+
+**Step 2:** Start a conversation and it will immediately send you your chat ID
+
+**Step 3:** Copy the number (it usually starts with a negative sign for groups or is positive for personal chats)
+
 
 **Step 3:** Look for the `"chat":{"id":` field in the JSON response. The number after `id` is your chat ID.
 
@@ -177,7 +179,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-### Next.js Pages Router
+<!-- ### Next.js Pages Router
 
 Add it to your `_app.js` file:
 
@@ -196,7 +198,7 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
-```
+``` -->
 
 ### React (Vite, CRA)
 
