@@ -85,7 +85,7 @@ interface VisitorData {
 export default function Notigram({
   botToken,
   chatId,
-  fields = ["page", "country", "flag", "city", "device", "time"],
+  fields = ["page", "country", "flag", "device", "time"],
   customMessage,
   onSuccess,
   onError,
