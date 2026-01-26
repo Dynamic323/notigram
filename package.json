@@ -1,6 +1,6 @@
 {
   "name": "notigram",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Real-time Telegram notifications for React & Next.js apps. Get instant visitor alerts with IP, location, device info & more. Built by Dycoder 💙",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -25,7 +25,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-   "react": ">=16.8.0"
+    "react": ">=16.8.0"
   },
   "dependencies": {
     "tslib": "^2.8.1",
