@@ -85,7 +85,7 @@ interface VisitorData {
 export default function Notigram({
   botToken,
   chatId,
-  fields = ["ip", "country", "flag", "city", "device", "page", "time"],
+  fields = ["page", "country", "flag", "city", "device", "time"],
   customMessage,
   onSuccess,
   onError,
@@ -121,7 +121,6 @@ export default function Notigram({
       const parser = new UAParser();
       const { browser, os, device } = parser.getResult();
 
-      
       const visitorData: VisitorData = {
         // IP Data
         ip: locationData.ip,
